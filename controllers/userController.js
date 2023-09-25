@@ -59,7 +59,7 @@ module.exports = {
 //Update a user
 async updateUser(req, res) {
   try {
-    const user = await User.findOneandUpdate(
+    const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
       { $set: req.body },
       { runValidators: true, new: true }
@@ -81,7 +81,7 @@ async addFriend(req, res) {
     const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
-      { runValidators: true, new: true }
+      { runValidators: true, new: true,}
     );
 
     if (!user) {
@@ -93,13 +93,14 @@ async addFriend(req, res) {
     res.status(500).json(err);
   }
 },
+//Delete Friend
 
 async deleteFriend(req, res) {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { friendsId: req.params.friendsId } } },
-      { runValidators: true, new: true }
+      { $pull: { friends: { _id: req.params.friendsId } } },
+      { runValidators: true, new: true, overwrite:true}
     );
 
     if (!user) {

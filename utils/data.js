@@ -1,149 +1,107 @@
-const names = [
-  'Aaran',
-  'Aaren',
-  'Aarez',
-  'Aarman',
-  'Aaron',
-  'Aaron-James',
-  'Aarron',
-  'Aaryan',
-  'Aaryn',
-  'Aayan',
-  'Aazaan',
-  'Abaan',
-  'Abbas',
-  'Abdallah',
-  'Abdalroof',
-  'Abdihakim',
-  'Abdirahman',
-  'Abdisalam',
-  'Abdul',
-  'Abdul-Aziz',
-  'Abdulbasir',
-  'Abdulkadir',
-  'Abdulkarem',
-  'Smith',
-  'Jones',
-  'Coollastname',
-  'enter_name_here',
-  'Ze',
-  'Zechariah',
-  'Zeek',
-  'Zeeshan',
-  'Zeid',
-  'Zein',
-  'Zen',
-  'Zendel',
-  'Zenith',
-  'Zennon',
-  'Zeph',
-  'Zerah',
-  'Zhen',
-  'Zhi',
-  'Zhong',
-  'Zhuo',
-  'Zi',
-  'Zidane',
-  'Zijie',
-  'Zinedine',
-  'Zion',
-  'Zishan',
-  'Ziya',
-  'Ziyaan',
-  'Zohaib',
-  'Zohair',
-  'Zoubaeir',
-  'Zubair',
-  'Zubayr',
-  'Zuriel',
-  'Xander',
-  'Jared',
-  'Grace',
-  'Alex',
-  'Mark',
-  'Tamar',
-  'Farish',
-  'Sarah',
-  'Nathaniel',
-  'Parker',
+const users = [
+{
+  username: 'frogbuddy',
+  email: 'frogbuddy@hotmail.com',
+},
+{
+  username: 'mastershake',
+  email: 'mshake@gmail.com',
+},
+{
+  username: 'littlelady',
+  email: 'queenbee@gmail.com',
+},
+{
+  username: 'baseballgirl',
+  email: 'baselady@gmail.com',
+},
+{
+  username: 'scienceguy',
+  email: 'scienceparty@gmail.com',
+},
+{
+  username: 'lordboddington',
+  email: 'naughtyboddi@gmail.com',
+},
+{
+  username: 'naturegal',
+  email: 'naturegal@gmail.com',
+},
+{
+  username: 'coalminer',
+  email: 'coaliscool@gmail.com',
+},
+{
+  username: 'awkwardwoman',
+  email: 'thisisawkward@gmail.com',
+},
+{
+  username: 'lameduck',
+  email: 'solame@gmail.com',
+}
 ];
 
-const appDescriptions = [
-  'Decision Tracker',
-  'Find My Phone',
-  'Learn Piano',
-  'Starbase Defender',
-  'Tower Defense',
-  'Monopoly Money Manager',
-  'Movie trailers',
-  'Hello world',
-  'Stupid Social Media App',
-  'Notes',
-  'Messages',
-  'Email',
-  'Compass',
-  'Firefox',
-  'Running app',
-  'Cooking app',
-  'Poker',
-  'Deliveries',
-];
+// const thoughtDescriptions = [
+//   'Feeling great today!',
+//   'Got a new phone!',
+//   'My team won the game!',
+//   'Finally found a job!',
+//   'Wish it was winter',
+//   'Saw a great movie last night',
+//   'We need some rain',
+//   'I messed up do bad today',
+//   'So homesick',
+//   'When will this be over?',
+// ];
 
-const possibleTags = [
-  'html',
-  'css',
-  'javascript',
-  'typescript',
-  'go',
-  'cpp',
-  'python',
-  'rust',
-  'React',
-  'React Native',
-  'NextJS',
-  'Tailwind',
-  'Vue',
-  'mongodb',
-  'sql',
-];
+// const possibleReactions = [
+//   'cool',
+//   'dumb',
+//   'random',
+//   'me too!',
+//   'not!',
+//   'get outa here',
+//   'no way',
+//   'crap',
+//   'you know nothing',
+//   'not so fast',
+//   'I agree',
+// ];
 
-const users = [];
 
 // Get a random item given an array
-const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+// const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Gets a random full name
-const getRandomName = () =>
-  `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
+// const getRandomUser = () =>
+//   `${getRandomArrItem(users)}`;
 
-// Function to generate random applications that we can add to the database. Includes application tags.
-const getRandomApplications = (int) => {
-  let results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      published: Math.random() < 0.5,
-      description: getRandomArrItem(appDescriptions),
-      buildSuccess: Math.random() < 0.5,
-      tags: [...getApplicationTags(3)],
-    });
-  }
-  return results;
-};
+// Function to generate random thoughts that we can add to the database. Includes reactions.
+// const getRandomThoughts = (int) => {
+//   let results = [];
+//   for (let i = 0; i < int; i++) {
+//     results.push({
+//       thoughtText: getRandomArrItem(thoughtDescriptions),
+//       reactions: [...getThoughtReactions(3)],
+//     });
+//   }
+//   return results;
+// };
 
-// Create the tags that will be added to each application
-const getApplicationTags = (int) => {
-  if (int === 1) {
-    return getRandomArrItem(possibleTags);
-  }
-  const results = [];
-  for (let i = 0; i < int; i++) {
-    results.push({
-      tagBody: getRandomArrItem(possibleTags),
-      username: getRandomName(),
-    });
-  }
-  return results;
-};
+// Create the reactions that will be added to each thought
+// const getThoughtReactions = (int) => {
+//   if (int === 1) {
+//     return getRandomArrItem(possibleReactions);
+//   }
+//   const results = [];
+//   for (let i = 0; i < int; i++) {
+//     results.push({
+//       reactionBody: getRandomArrItem(possibleReactions),
+//       username: getRandomUser(),
+//     });
+//   }
+//   return results;
+// };
 
 // Export the functions for use in seed.js
-module.exports = { getRandomName, getRandomApplications };
+module.exports = { users };

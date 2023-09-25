@@ -25,16 +25,17 @@ module.exports = {
 
   async createThought(req, res) {
     try {
-      const thought = await Thought.create(req.body);
-      const user = await User.findOneAndUpdate(
-        { _id: req.body.userId },
+      const thought = await Thought.create(req.body)
+  
+      let user = await User.findOneAndUpdate(
+        { username: req.body.username },
         { $addToSet: { thoughts: thought._id } },
         { new: true }
       );
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought created, but found no user with that ID',
+          message: 'Thought created, but found no user with that username',
         })
       }
 
@@ -50,7 +51,7 @@ module.exports = {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $set: req.body },
-        { runValidators: true, new: true }
+        { runValidators: true, new: true}
       );
 
       if (!thought) {
@@ -111,7 +112,7 @@ module.exports = {
     try {
       const thought = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
-        { $pull: { reactions: { reactionId: req.body } } },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
         { runValidators: true, new: true }
       );
 
