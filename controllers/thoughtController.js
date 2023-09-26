@@ -74,14 +74,14 @@ module.exports = {
       }
 
       const user = await User.findOneAndUpdate(
-        { thoughts: req.params.thoughtId },
+        { username: thought.username },
         { $pull: { thoughts: req.params.thoughtId } },
         { new: true }
       );
 
       if (!user) {
         return res.status(404).json({
-          message: 'Thought created but no user with this id!',
+          message: 'Thought deleted but no user with this id!',
         });
       }
 
