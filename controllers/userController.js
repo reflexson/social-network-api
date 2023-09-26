@@ -99,15 +99,15 @@ async deleteFriend(req, res) {
   try {
     const user = await User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { _id: req.params.friendsId } } },
-      { runValidators: true, new: true, overwrite:true}
+      { $pull: { friends: req.params.friendId } },
+      { runValidators: true, new: true}
     );
 
     if (!user) {
       return res.status(404).json({ message: 'No User with this id!' });
     }
 
-    res.json(application);
+    res.json(user);
   } catch (err) {
     res.status(500).json(err);
   }
